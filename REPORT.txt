@@ -1,0 +1,64 @@
+UDP SMTP client:
+
+Implements reliable connection oriented UDP using UDT application layer protocol.
+https://en.wikipedia.org/wiki/UDP-based_Data_Transfer_Protocol
+It is kind of like TCP over UDP but faster for transfering large amounts of data.
+
+Random numbers are generated using Random.org. 
+Base64 encoding and decoding is performed with the PHP script provided. My machine should be online when you are testing it, if it is not, the script 
+can be hosted on any web server supporting https. Just replace all instances with services.117.bz with your web server.
+
+
+/*** UDP SMTP ***/
+
+Working SMTP command sequences:
+HELO
+	return: 250
+AUTH
+	return: 334-dXNlcm5hbWU6
+	user enters username: alice
+	if new user:
+		return: 330 new password encoded in base64
+	else
+		return: 334-cGFzc3dvcmQ6
+		user enters password
+		if password valid
+			return: 235
+			continue
+		if password invalid
+			return: 535 
+			about
+MAIL-FROM:<alice@447.edu>
+	if MAIL-FROM and username are valid ie. username == alice and MAIL-FROM == alice@447.edu 
+		return: 250
+	else
+		return: 500 (bad MAIL-FROM / RCPT-TO)
+		abort
+RCPT-TO:<alice@447.edu>
+	return: 250
+DATA
+	return: 354 (DATA ok)
+Subject:HI\nHI<CRLF>.<CRLF>
+	if <CRLF>.<CRLF> is used to terminate string
+		return: 250
+	else
+		return: 554 (bad message)
+		abort
+QUIT
+return: 221
+
+Out of sequence
+return: 503
+
+
+/*** TCP HTTP ***/
+
+HTTP client (reciever) authentication is the same, however the process is guided.
+Return codes:
+200 - ok
+404 - not found
+400 - bad request
+
+
+
+
