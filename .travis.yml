@@ -1,8 +1,12 @@
+# Travis CI test file to test if both client and server compile
+
 sudo: required
 before_install:
   - sudo apt-get install build-essential
+  - sudo apt-get install clang++-3.8 
+  - sudo apt-get install lldb-3.8
   - sudo apt-get install libboost-all-dev
-  - libudt-dev
+  - sudo apt-get install libudt-dev
   - sudo apt-get install libcurl4-openssl-dev
   
 # Enable C++ support
