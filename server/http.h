@@ -2,6 +2,6 @@
 #define HTTP_H
 
 void HTTPserver(int sock);
-void UDPserver(char *portNO);
+void TCPserver(char *portNO);
 
 #endif
