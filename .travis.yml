@@ -20,7 +20,7 @@ compiler:
 script:
   - cd server
   - make
-  - ./server 5000 5010
+  - nohup ./server 5000 5010 &
   - cd ../client
   - make
   - ./client localhost 5000 5010 < testing.txt
