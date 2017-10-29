@@ -21,7 +21,7 @@
 int main(int argc, char *argv[]) {
 
   if (argc < 4) {
-    std::cout << "Hostname, TCP Port, UDP Port" << std::endl;
+    std::cout << "Hostname, UDP Port, TCP Port" << std::endl;
     exit(0);
   }
 
