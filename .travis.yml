@@ -1,0 +1,20 @@
+sudo: required
+before_install:
+  - sudo apt-get install build-essential
+  - sudo apt-get install libboost-all-dev
+  - libudt-dev
+  - sudo apt-get install libcurl4-openssl-dev
+  
+# Enable C++ support
+language: cpp
+
+# Compiler selection
+compiler:
+  - clang++-3.8
+  
+# Build steps
+script:
+  - cd server
+  - make
+  - cd ../client
+  - make
