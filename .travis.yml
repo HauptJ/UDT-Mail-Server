@@ -1,3 +1,5 @@
+# Travis CI test file to test if both client and server compile
+
 sudo: required
 before_install:
   - sudo apt-get install build-essential
